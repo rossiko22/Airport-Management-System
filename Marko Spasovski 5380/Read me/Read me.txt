@@ -1,3 +1,0 @@
-1.Create a database named airportdb in your psql
-2. Update spring.jpa.hibernate.ddl-auto=update to spring.jpa.hibernate.ddl-auto=create in application.properties
-3. Read GuideAirport
