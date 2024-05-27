@@ -26,4 +26,5 @@ public class LoyalityProgramService {
     public List<LoyalityProgram> getAllLoyalityPrograms() {
         return loyalityProgramRepository.findAll();
     }
+
 }

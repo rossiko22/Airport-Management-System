@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,37 +45,23 @@ public class CreateController
         return loyalityProgramService.create(loyalityProgram);
     }
 
-    //{
-    //    "loyalityProgram" : "50% discount",
-    //    "discountProcent" : 50
-    //}
-
     @PostMapping("/country")
     public Country create(@RequestBody Country country){
         return countryService.create(country);
     }
 
-    //{
-    //    "countryName" : "Sweden"
-    //}
 
     @PostMapping("/flight-provider")
     public FlightProvider create(@RequestBody FlightProvider flightProvider){
         return flightProviderService.create(flightProvider);
     }
 
-    //{
-    //    "flightProviderName" : "Sweden"
-    //}
 
     @PostMapping("/airplane-model")
     public AirplaneModel create(@RequestBody AirplaneModel airplaneModel){
         return airplaneModelService.create(airplaneModel);
     }
 
-    //{
-    //    "airplaneModelName" : "Boeing 787 Jetliner"
-    //}
 
     @PostMapping("/airplane-type")
     public AirplaneType create(@RequestBody AirplaneTypeDto airplaneTypeDto){
@@ -86,20 +74,10 @@ public class CreateController
         return airplaneTypeService.create(airplaneType);
     }
 
-    //{
-    //    "airplaneModelId": 3,
-    //    "airplaneTypeName": "JetLiner"
-    //}
 
     @PostMapping("/{numberOfSeats}/seats")
     public Seats create(@PathVariable("numberOfSeats") Integer numberOfSeats){
-        List<Boolean> booleanList = new ArrayList<Boolean>(numberOfSeats);
-        for(int i = 0; i < numberOfSeats; i++){
-            booleanList.add(false);
-        }
-        Seats seats = new Seats();
-        seats.setReservedSeats(booleanList);
-        return seatsService.create(seats);
+        return seatsService.create(numberOfSeats);
     }
 
     //http://localhost:8080/create/50/seats
@@ -119,11 +97,7 @@ public class CreateController
         return airportService.create(airport);
     }
 
-    //{
-    //    "countryId": 3,
-    //    "airportName" : "Stockholm Arlanda Airport",
-    //    "airportCity" : "Stockholm"
-    //}
+
 
     @PostMapping("/airplane")
     Airplane create(@RequestBody AirplaneAdditionalDto airplaneAdditionalDto){
@@ -141,10 +115,6 @@ public class CreateController
         return airplaneService.create(airplane);
     }
 
-    //{
-    //    "airplaneTypeId": 4,
-    //    "seatsId" : 3
-    //}
 
     @PostMapping("/flight")
     Flight create(@RequestBody FlightAdditionalDto flightAdditionalDto){
@@ -173,20 +143,17 @@ public class CreateController
 
     }
 
-    //{
-    //    "flightProviderId": 1,
-    //    "originAirportId" : 3,
-    //    "destinationAirportId" : 2,
-    //    "airplaneId" : 3,
-    //    "arrivalTime" : "2024-05-12T19:30:00.000+00:00",
-    //    "departureTime" : "2024-05-12T19:30:00.000+00:00",
-    //    "price":1350
-    //}
-
 
     @PostMapping("/booking")
     Booking create(@RequestBody BookingAdditionalDto bookingAdditionalDto){
-        Optional<LoyalityProgram> optionalLoyalityProgram = loyalityProgramService.getById(bookingAdditionalDto.getLoyalityProgramId());
+        Optional<LoyalityProgram> optionalLoyalityProgram;
+
+        if(bookingAdditionalDto.getLoyalityProgramId() != null){
+            optionalLoyalityProgram = loyalityProgramService.getById(bookingAdditionalDto.getLoyalityProgramId());
+        }else{
+            optionalLoyalityProgram = loyalityProgramService.getById(1L);
+        }
+
         Optional<Flight> optionalFlight = flightService.findFlightById(bookingAdditionalDto.getId());
 
         Booking booking = new Booking();
@@ -196,12 +163,6 @@ public class CreateController
         Flight flight = optionalFlight.get();
         Airplane airplane = flight.getAirplane();
 
-        if(!optionalLoyalityProgram.isPresent()){
-            booking.setLoyalityProgram(null);
-        }else{
-            booking.setLoyalityProgram(loyalityProgram);
-        }
-
         booking.setFlight(flight);
 
         booking.setFirstName(bookingAdditionalDto.getFirstName());
@@ -210,13 +171,16 @@ public class CreateController
         booking.setAge(bookingAdditionalDto.getAge());
         booking.setCitizenship(bookingAdditionalDto.getCitizenship());
         booking.setPassportId(bookingAdditionalDto.getPassportId());
+        booking.setLoyalityProgram(loyalityProgram);
+        booking.setBookingTime(Timestamp.from(Instant.now()));
 
         if(airplane.getSeats().getReservedSeats().get(bookingAdditionalDto.getReservedSeat() - 1) != true){
             booking.setReservedSeat(bookingAdditionalDto.getReservedSeat());
-            airplane.getSeats().getReservedSeats().set(bookingAdditionalDto.getReservedSeat(), true);
+            airplane.getSeats().getReservedSeats().set(bookingAdditionalDto.getReservedSeat() - 1, true);
         }else{
             throw new BookingException("The seat is not available.");
         }
+
 
         if(optionalLoyalityProgram.isPresent()){
             Long discount = loyalityProgram.getDiscountProcent();
@@ -230,19 +194,4 @@ public class CreateController
         return bookingService.save(booking);
 
     }
-
-    //Da se sredi kd ima null loyality program shto da pravi //
-    
-    //{
-    //  "loyalityProgramId": 5,
-    //  "flightId": 9,
-    //  "reservedSeat": 12,
-    //  "firstName": "John",
-    //  "lastName": "Doe",
-    //  "gender": "M",
-    //  "age": 30,
-    //  "citizenship": "USA",
-    //  "passportId": "123456789",
-    //  "bookingTime": "2023-03-14T12:34:56Z"
-    //}
 }

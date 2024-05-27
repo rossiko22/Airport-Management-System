@@ -37,36 +37,4 @@ public class BookingController {
     }
 
 
-//    @PostMapping("/flight")
-//    public Booking create(@RequestBody Booking booking) {
-//        Optional<Flight> flightOptional = flightService.findFlightById(booking.getId());
-//        if (!flightOptional.isPresent()) {
-//            throw new BookingException("Flight not found");
-//        }
-//        Flight flight = flightOptional.get();
-//
-//        Optional<LoyalityProgram> loyalityProgramOptional = loyalityProgramService.getById(booking.getLoyalityProgram().getLoyalityProgramId());
-//        LoyalityProgram loyalityProgram = loyalityProgramOptional.orElse(null);
-//
-//        booking.setBookingTime(Timestamp.from(Instant.now()));
-//
-//        long price = flight.getPrice();
-//        if (loyalityProgram != null) {
-//            long discountPercentage = loyalityProgram.getDiscountProcent();
-//            price -= (price / division) * discountPercentage;
-//        }
-//        booking.setPrice(price);
-//
-//        Airplane airplane = flight.getAirplane();
-//        if (airplane.getSeats().getReservedSeats().get(booking.getReservedSeat() - 1)) {
-//            throw new BookingException("The seat " + booking.getReservedSeat() + " is already reserved");
-//        } else {
-//            airplane.getSeats().getReservedSeats().set(booking.getReservedSeat() - 1, true);
-//        }
-//
-//        return bookingService.save(booking);
-//    }
-//
-//    private static final int division = 100;
-
 }

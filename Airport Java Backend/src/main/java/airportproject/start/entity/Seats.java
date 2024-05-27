@@ -19,7 +19,7 @@ public class Seats {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long seats_id;
-
+    
     private List<Boolean> reservedSeats;
 
 
