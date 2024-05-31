@@ -9,7 +9,7 @@ This is an Simple Airport Manage System
 | ----------------- | ------------------------------------------------------------------ |
 | /flight/{flightId} | Retrieves a specific flight by its ID  |
 | /flights/{OriginCountry}/{destinationCountry}| Retrieves a list of flights from the specified origin country to the specified destination country |
-| /flight/{flightId}/airplane | Retrieves the airplane associated with the specified flight ID  |
+| /flight/<span style="color:darkred;">/flight/{flightId}/airplane</span>/airplane | Retrieves the airplane associated with the specified flight ID  |
 | /flight/{flightId}/bookings | Retrieves a list of bookings for the specified flight ID  |
 |/flight/{flightId}/seats-availability| Retrieves a list of available seats for the specified flight ID |
 | /flight/{flightId}/check-seat-availability/{seatId} | Checks the availability of a specific seat on the specified flight |
