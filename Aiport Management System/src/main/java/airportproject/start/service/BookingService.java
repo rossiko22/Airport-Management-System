@@ -37,7 +37,15 @@ public class BookingService {
         return bookingRepository.save(booking);
     }
 
-    public void delete(Long bookingId) {
-        bookingRepository.deleteById(bookingId);
+    public String delete(Long bookingId) {
+        if(bookingRepository.existsById(bookingId)){
+            bookingRepository.deleteById(bookingId);
+            return "Booking with id " + bookingId + " successfully deleted.";
+        }
+        return "Booking with id " + bookingId + " does not exist";
     }
+
+
+
+
 }

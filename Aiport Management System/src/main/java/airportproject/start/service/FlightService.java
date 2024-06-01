@@ -87,7 +87,12 @@ public class FlightService {
         return flightRepository.save(flight);
     }
 
-    public void delete(Long flightId) {
-        flightRepository.deleteById(flightId);
+    public String delete(Long flightId) {
+
+        if(flightRepository.existsById(flightId)){
+            flightRepository.deleteById(flightId);
+            return "Flight with id " + flightId + " successfully deleted.";
+        }
+        return "Flight with that id does not exist.";
     }
 }

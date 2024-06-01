@@ -67,6 +67,7 @@ You can install the requirements from here :
 | `/airplane-models`| Retrieves a list of all airplane models that our agency works with |
 | `/airplanes`| Retrieves a list of all airplanes that we currently have |
 | `/airplane/{id}`| Retrieves an airplane by its ID |
+| `/bookings`| Retrieves all bookings |
 
 ## POST Endpoints
 
@@ -101,7 +102,7 @@ You can install the requirements from here :
 |  |  | "airplaneModelId": 3,
 |  |  | "airplaneTypeName": "JetLiner"
 |  |  | } |
-| `/create/seats` | Create new seats (TO BE DEFINED) | TBD |
+| `/create/seats` | Create new seats (TO BE DEFINED) | Still in developement |
 | `/create/airport` | Create a new airport | {
 |  |  | "countryId": 3,
 |  |  | "airportName" : "Stockholm Arlanda Airport",

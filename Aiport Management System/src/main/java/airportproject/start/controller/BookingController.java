@@ -19,7 +19,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/book")
+@RequestMapping("/bookings")
 public class BookingController {
 
     @Autowired

@@ -21,14 +21,13 @@ public class DeleteController {
 
     @DeleteMapping("/flight/{id}")
     public String deleteFlight(@PathVariable("id") Long flightId){
-        flightService.delete(flightId);
-        return "Flight with id " + flightId + " successfully deleted.";
+        return flightService.delete(flightId);
+
     }
 
     @DeleteMapping("/booking/{id}")
     public String deleteBooking(@PathVariable("id") Long bookingId){
-        bookingService.delete(bookingId);
-        return "Booking with id " + bookingId + " successfully deleted.";
+        return bookingService.delete(bookingId);
     }
 
 }

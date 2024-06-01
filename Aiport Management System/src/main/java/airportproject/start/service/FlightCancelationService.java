@@ -43,4 +43,8 @@ public class FlightCancelationService {
     public List<FlightCancelation> getAllCancelledFlights() {
         return flightCancelationRepository.findAll();
     }
+
+    public Boolean getFlightExistation(Long flightId){
+        return flightRepository.existsById(flightId);
+    }
 }
