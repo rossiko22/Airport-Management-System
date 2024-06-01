@@ -38,11 +38,11 @@ To use this application, you need to have installed :
 
 You can install the requirements from here :
 
-[PostgreSQL](https://www.postgresql.org/)
+[PostgreSQL](https://www.postgresql.org/){:target="_blank"}
 
-[JDK](https://download.oracle.com/java/21/archive/jdk-21.0.2_windows-x64_bin.exe)
+[JDK](https://download.oracle.com/java/21/archive/jdk-21.0.2_windows-x64_bin.exe){:target="_blank"}
 
-[Database Query](https://www.mediafire.com/file/p3twmqcvhsh1g8f/Query.txt/file)
+[Database Query](https://www.mediafire.com/file/p3twmqcvhsh1g8f/Query.txt/file){:target="_blank"}
 ## GET Endpoints
 
 | Endpoint             |Description                                                          |
