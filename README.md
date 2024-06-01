@@ -150,26 +150,5 @@ You can install the requirements from here :
 
 ## Authors
 
-
-{
-  "flightId": 2,
-  "flightProvider": {
-    "flightProviderId": 5
-  },
-  "originAirport": {
-    "airportId": 2
-  },
-  "destinationAirport": {
-    "airportId": 3
-  },
-  "airplane": {
-    "airplaneId": 4
-  },
-  "arrivalTime": "2024-06-01T14:00:00",
-  "departureTime": "2024-06-01T12:00:00",
-  "price" : 1200
-}
-
-
 [@rossiko22](https://github.com/rossiko22)
 
