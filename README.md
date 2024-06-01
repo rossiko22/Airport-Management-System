@@ -55,7 +55,7 @@ You can install the requirements from here :
 | `/flight/{flightId}/seats-availability`| Retrieves a list of available seats for the specified flight ID |
 | `/flight/{flightId}/check-seat-availability/{seatId}` | Checks the availability of a specific seat on the specified flight |
 | `/flight-changes`| Retrieves a list of recent changes made to flights |
-| `/flight-cancellations`| Retrieves a list of recently canceled flights |
+| `/flights-cancellations`| Retrieves a list of recently canceled flights |
 | `/cancel/flight/{flightId}`| Cancels the specified flight |
 | `/seats`| Retrieves a list of all seats across all flights |
 | `/loyality-programs`| Retrieves a list of all loyalty programs |
@@ -124,7 +124,52 @@ You can install the requirements from here :
 | `/delete/flight/{flightId}` | Deletes a flight by its ID  |
 | `/delete/booking/{bookingId}` | Deletes a booking by its ID  |
 
+## PUT Endpoints
+
+| Endpoint | Description | JSON Payload |
+| --- | --- | --- |
+| `/change/flight` | `Changes a flight` | { |
+|  |  | "flightId": 2, |
+|  |  | "flightProvider": { |
+|  |  | "flightProviderId": 5 |
+|  |  | }, |
+|  |  | "originAirport": { |
+|  |  | "airportId": 2 |
+|  |  | }, |
+|  |  | "destinationAirport": { |
+|  |  | "airportId": 3 |
+|  |  | }, |
+|  |  | "airplane": { |
+|  |  | "airplaneId": 4 |
+|  |  | }, |
+|  |  | "arrivalTime": "2024-06-01T14:00:00", |
+|  |  | "departureTime": "2024-06-01T12:00:00", |
+|  |  | "price": 1200 |
+|  |  | } |
+
+
 ## Authors
+
+
+{
+  "flightId": 2,
+  "flightProvider": {
+    "flightProviderId": 5
+  },
+  "originAirport": {
+    "airportId": 2
+  },
+  "destinationAirport": {
+    "airportId": 3
+  },
+  "airplane": {
+    "airplaneId": 4
+  },
+  "arrivalTime": "2024-06-01T14:00:00",
+  "departureTime": "2024-06-01T12:00:00",
+  "price" : 1200
+}
+
 
 [@rossiko22](https://github.com/rossiko22)
 

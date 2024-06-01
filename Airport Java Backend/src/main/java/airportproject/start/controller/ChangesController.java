@@ -4,6 +4,7 @@ import airportproject.start.entity.Flight;
 import airportproject.start.entity.FlightChange;
 import airportproject.start.service.FlightChangeService;
 import airportproject.start.service.FlightService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +22,9 @@ public class ChangesController {
     FlightService flightService;
 
     @PutMapping("/flight")
+    @Transactional
     Flight flightChange(@RequestBody Flight flight){
+
         FlightChange flightChange = new FlightChange();
 
         flightChange.setFlightId(flight.getFlightId());
